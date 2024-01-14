@@ -31,7 +31,7 @@ jobs:
         echo "Fin de login "
     - name: contruir imagane
       run: |
-        docker build -t tecnolobo/docker-graphql:0.0.2 .
+        docker build -t tecnolobo/docker-graphql:0.0.3 .
     - name: push imagen a dockerhub
       run: |
-        docker push tecnolobo/docker-graphql:0.0.2  
+        docker push tecnolobo/docker-graphql:0.0.3  
