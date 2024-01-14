@@ -34,19 +34,23 @@ jobs:
     # aqui_se_usa_la_variable_creada_en_github_secrets
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        #creamos una variable para enlazar lo que nos devuelve el paquete paulhatch/semantic-version@v5.3.0
-        NEW_VERSION: ${{ steps.version.outputs.version }}
-        #aqui_Se_pone_lo_que_Se_va_correr
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}        
+      #aqui_Se_pone_lo_que_Se_va_correr
       run: |
         echo "aqui viene la version $NEW_VERSION !!!! "
         #Indica_que_se_van_agregar_Muchas_instrucciones_y_que_cada_una_va_ser_independiente
-#        echo "iniciando login"
-#        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-#        echo "Fin de login "
-#    - name: contruir imagane
-#      run: |
-#        docker build -t tecnolobo/docker-graphql:0.0.3 .
-#    - name: push imagen a dockerhub
-#      run: |
-#        docker push tecnolobo/docker-graphql:0.0.3  
+        echo "iniciando login"
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        echo "Fin de login "
+    - name: contruir imagane
+      env:
+        #creamos una variable para enlazar lo que nos devuelve el paquete paulhatch/semantic-version@v5.3.0
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t tecnolobo/docker-graphql:$NEW_VERSION .
+    - name: push imagen a dockerhub
+      env:
+        #creamos una variable para enlazar lo que nos devuelve el paquete paulhatch/semantic-version@v5.3.0
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push tecnolobo/docker-graphql:$NEW_VERSION 
