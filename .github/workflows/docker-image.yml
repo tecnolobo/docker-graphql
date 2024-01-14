@@ -34,10 +34,11 @@ jobs:
     # aqui_se_usa_la_variable_creada_en_github_secrets
       env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}        
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}       
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       #aqui_Se_pone_lo_que_Se_va_correr
       run: |
-        echo "aqui viene la version $NEW_VERSION !!!! "
+        echo "LA versiona crear es : $NEW_VERSION !!!! "
         #Indica_que_se_van_agregar_Muchas_instrucciones_y_que_cada_una_va_ser_independiente
         echo "iniciando login"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
