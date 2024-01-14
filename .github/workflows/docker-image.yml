@@ -28,4 +28,4 @@ jobs:
         #Indica_que_se_van_agregar_Muchas_instrucciones_y_que_cada_una_va_ser_independiente
         echo "iniciando login"
         docker login -u $DOCKER_USER -p $DOCKER_USER
-        echo "Fin de login"
+        echo "Fin de login "
